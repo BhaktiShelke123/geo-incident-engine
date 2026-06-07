@@ -2,7 +2,7 @@
 
 LLM-powered geospatial incident detection, extraction, and conflation pipeline.
 
-**Live demo:** https://YOUR_GITHUB_USERNAME.github.io/geo-incident-engine/
+**Live demo:** https://bhaktishelke123.github.io/geo-incident-engine/
 
 ## What it does
 - Paste any raw incident report (traffic jam, road closure, accident)
