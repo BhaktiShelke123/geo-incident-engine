@@ -9,6 +9,7 @@ def geocode(location_text: str) -> dict | None:
         "limit": 1
     }, headers=headers)
     data = r.json()
+    print(f"Nominatim query: '{location_text}' → results: {len(data)} → raw: {data}")
     if data:
         return {
             "lat": float(data[0]["lat"]),
