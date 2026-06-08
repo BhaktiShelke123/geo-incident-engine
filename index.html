@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geo Incident Engine</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>Geo Incident Engine</h1>
+      <p class="subtitle">LLM-powered incident detection & conflation</p>
+
+      <div class="stats-grid" id="stats">
+        <div class="stat"><span id="stat-total">0</span><label>Total</label></div>
+        <div class="stat"><span id="stat-unique">0</span><label>Unique</label></div>
+        <div class="stat"><span id="stat-merged">0</span><label>Merged</label></div>
+      </div>
+
+      <div class="severity-bar">
+        <div class="sev high" id="bar-high"></div>
+        <div class="sev medium" id="bar-medium"></div>
+        <div class="sev low" id="bar-low"></div>
+      </div>
+      <div class="sev-legend">
+        <span class="dot high"></span>High
+        <span class="dot medium"></span>Medium
+        <span class="dot low"></span>Low
+      </div>
+
+      <textarea id="report-input" placeholder="Paste a raw incident report here…&#10;&#10;e.g. Major accident on I-95 northbound near Exit 12 in Newark, NJ. All lanes blocked. Expect severe delays."></textarea>
+      <button id="submit-btn" onclick="submitReport()">⚡ Process report</button>
+      <button id="clear-btn" onclick="clearAll()">Clear all</button>
+
+      <div id="result-box" class="result-box hidden"></div>
+
+      <div class="incident-list" id="incident-list"></div>
+    </aside>
+    <main id="map"></main>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
