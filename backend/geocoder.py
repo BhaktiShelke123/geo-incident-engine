@@ -1,19 +1,18 @@
-import httpx, os
-from dotenv import load_dotenv
-load_dotenv()
-
-GOOGLE_KEY = os.getenv("GOOGLE_GEOCODING_KEY")
+import httpx
 
 def geocode(location_text: str) -> dict | None:
-    url = "https://maps.googleapis.com/maps/api/geocode/json"
-    r = httpx.get(url, params={"address": location_text, "key": GOOGLE_KEY})
+    url = "https://nominatim.openstreetmap.org/search"
+    headers = {"User-Agent": "geo-incident-engine/1.0"}
+    r = httpx.get(url, params={
+        "q": location_text,
+        "format": "json",
+        "limit": 1
+    }, headers=headers)
     data = r.json()
-    print(f"Geocoding '{location_text}' → status: {data['status']}, key set: {bool(GOOGLE_KEY)}")
-    if data["status"] == "OK":
-        loc = data["results"][0]["geometry"]["location"]
+    if data:
         return {
-            "lat": loc["lat"],
-            "lng": loc["lng"],
-            "formatted_address": data["results"][0]["formatted_address"]
+            "lat": float(data[0]["lat"]),
+            "lng": float(data[0]["lon"]),
+            "formatted_address": data[0]["display_name"]
         }
     return None
