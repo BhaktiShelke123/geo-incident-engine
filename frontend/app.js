@@ -1,4 +1,5 @@
-const API = "http://localhost:8000";
+const IS_LOCAL = location.hostname === "localhost" || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const API = IS_LOCAL ? "http://localhost:8000" : "https://geo-incident-engine.up.railway.app";
 const markers = {};
 let map;
 
